@@ -4,7 +4,7 @@ import socket
 def main():
 
     hostname  =socket.gethostname();
-    IPadrr = socket.gethostbyname(hostname);
+    IPaddr = socket.gethostbyname(hostname);
     NmapScanning(IPaddr)
     print(get_listening_ports())
     print(get_processes())
