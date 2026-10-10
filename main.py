@@ -1,4 +1,4 @@
-from OSQueryMonitoring import (get_listening_ports,get_processes,get_users)
+from OSQueryMonitoring import (get_listening_ports,get_processes,get_users,pretty)
 from NmapScanning import NmapScanning
 import socket
 def main():
@@ -6,9 +6,9 @@ def main():
     hostname  =socket.gethostname();
     IPaddr = socket.gethostbyname(hostname);
     NmapScanning(IPaddr)
-    print(get_listening_ports())
-    print(get_processes())
-    print(get_users())
+    print(pretty(get_listening_ports()))
+    print(prett(get_processes()))
+    print(pretty(get_users()))
 
 if __name__ == "__main__":
     main()
