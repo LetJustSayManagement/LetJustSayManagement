@@ -9,7 +9,7 @@ def run_osquery(query):
     )
     return json.loads(result.stdout)
 def pretty():
-    json.dumps(indent=4, sort_keys=True)
+    json.dumps(data, indent=4, sort_keys=True)
 def get_listening_ports():
     ports = run_osquery("SELECT pid, port, address FROM listening_ports;")
     filter = [
