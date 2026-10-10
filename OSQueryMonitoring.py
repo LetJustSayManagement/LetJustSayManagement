@@ -10,7 +10,11 @@ def run_osquery(query):
     return json.loads(result.stdout)
 
 def get_listening_ports():
-    return run_osquery("SELECT pid, port, address FROM listening_ports;")
+    ports = run_osquery("SELECT pid, port, address FROM listening_ports;")
+    filter = [
+    p for p in ports
+    if p["port"] != "0" and p["address"] != "" and p["pid"] != "-1"]
+    return filter
 
 def get_processes():
     return run_osquery("SELECT pid, name, path FROM processes;")
