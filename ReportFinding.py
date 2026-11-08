@@ -23,8 +23,12 @@ def Osquery_Report():
     "Users: " :get_users()
   }
   
-  def OpenVAS_Report(IPaddr):
-        Results = OpencasScan(IPaddr)
+def OpenVAS_Report(IPaddr):
+    Results = OpenvasScan(IPaddr)
+    return "scan Finding": Results
+def OpenVAS_Recommendations
+    Results = openvasScan(IPaddr)
+    return "Hardening Recommendation :" 
 def Full_Report(IPaddr):
   return {"Nmap" : Nmap_Report(IPaddr),
           "OSquery" : Osquery_Report()
