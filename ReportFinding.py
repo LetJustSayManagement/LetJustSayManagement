@@ -23,11 +23,10 @@ def Osquery_Report():
     "Processes: ": get_processes(),
     "Users: " :get_users()
   }
-
-def OpenVAS_Report(IPaddr):
-  
-def Full_Report(IPaddr): 
-  reutrn {"Nmap" : Nmap_Report(IPaddr),
+  def OpenVAS_Report(IPaddr):
+        pass
+def Full_Report(IPaddr):
+  return {"Nmap" : Nmap_Report(IPaddr),
           "OSquery" : Osquery_Report()
          }
 
@@ -35,7 +34,7 @@ def Write_Report(IPaddr):
   Now = datetime.now().strftime("%a,%b,%d,%Y,%H:%M:%S")
   filename = f"ASM_REPORT_{Now}.json"
   with open(filename,"w") as file:
-    json.dump(Full_Report(),file, indent = 4)
+    json.dump(Full_Report(IPaddr),file, indent = 4)
 
 
   return filename
