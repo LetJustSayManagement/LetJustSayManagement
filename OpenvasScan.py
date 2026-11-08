@@ -29,6 +29,9 @@ def OpenvasScan(IPaddr):
       print(Task_Status)
       if Task_Status == "Done": 
         break
+      elif Task_Status in ["Stopped", "Interrupted"]:
+        raise Exception(f"OpenVAS scan ended with status: {Task_Status}")
+
       time.sleep(20)
     return Report 
 
