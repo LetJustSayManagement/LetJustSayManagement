@@ -28,4 +28,4 @@ def Full_Report(IPaddr):
     json.dump(Nmap_Report(IPaddr),file, indent = 4)
 
 
-  return Now
+  return filename
