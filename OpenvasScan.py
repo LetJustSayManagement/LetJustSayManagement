@@ -22,7 +22,7 @@ def OpenvasScan(IPaddr):
     Task = gmp.create_task(name ="ASM Scanner",config_id =Config_ID,target_id = Target_ID,scanner_id =Scanner_ID);
     Task_ID = Task.get("id");
     Run_Report = gmp.start_task(Task_ID)
-    
+    Trying = 0
     while True:
       Report  = gmp.get_task(Task_ID)
       Task_Status = Report.find("task/status").text
@@ -31,8 +31,10 @@ def OpenvasScan(IPaddr):
         break
       elif Task_Status in ["Stopped", "Interrupted"]:
         raise Exception(f"OpenVAS scan ended with status: {Task_Status}")
-
-      time.sleep(20)
+      trying +=1;
+      if  Trying >= 120:
+        raise TimeoutError("this Scan has timed out")
+      time.sleep(60)
     return Report 
 
       
