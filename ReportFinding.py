@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from OSQueryMonitoring import (get_listening_ports,get_processes,get_users,pretty)
+from Run_Osquery import (get_listening_ports,get_processes,get_users,pretty)
 from NmapScanning import NmapScanning
 from OpenvasScan import OpenvasScan
 
@@ -17,15 +17,25 @@ def Nmap_Report(IPaddr):
   return Results_list
 
 
-def Osquery_Report(IPaddr):
+def Osquery_Report():
+  return{
+    "Listening Ports: ": get_listening_ports(),
+    "Processes: ": get_processes(),
+    "Users: " :get_users()
+  }
 
 def OpenVAS_Report(IPaddr):
   
-def Full_Report(IPaddr):
+def Full_Report(IPaddr): 
+  reutrn {"Nmap" : Nmap_Report(IPaddr),
+          "OSquery" : Osquery_Report()
+         }
+
+def Write_Report(IPaddr):
   Now = datetime.now().strftime("%a,%b,%d,%Y,%H:%M:%S")
   filename = f"ASM_REPORT_{Now}.json"
   with open(filename,"w") as file:
-    json.dump(Nmap_Report(IPaddr),file, indent = 4)
+    json.dump(Full_Report(),file, indent = 4)
 
 
   return filename
