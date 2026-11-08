@@ -25,10 +25,12 @@ def Osquery_Report():
   
 def OpenVAS_Report(IPaddr):
     Results = OpenvasScan(IPaddr)
-    return "scan Finding": Results
-def OpenVAS_Recommendations
+    return "scan Finding": str(Results)
+  
+def OpenVAS_Recommendations(IPaddr):
     Results = openvasScan(IPaddr)
-    return "Hardening Recommendation :" 
+    return "Hardening Recommendation" : 
+
 def Full_Report(IPaddr):
   return {"Nmap" : Nmap_Report(IPaddr),
           "OSquery" : Osquery_Report()
