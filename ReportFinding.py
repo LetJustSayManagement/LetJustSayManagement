@@ -25,7 +25,18 @@ def Osquery_Report():
   
 def OpenVAS_Report(IPaddr):
     Results = OpenvasScan(IPaddr)
-    return {"Scan Finding": str(Results)}
+    Findings = []
+    for Finding in results.findall(".//result"):
+      Findings.append({
+        "Name" : Finding.findtext("name"),
+        "Host" : Finding.findtext("host"),
+        "Port" : Finding.findtext("port"),
+        "Serverity" : Finding.findtext("serverity"),
+        "Description" : Finding.findtext("description"),
+        "Solution" : Finding.findtext("solution")
+      })
+                      
+    return {"Scan Finding": Findings}
   
 
 
