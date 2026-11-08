@@ -16,15 +16,15 @@ def Nmap_Report(IPaddr):
     }
   return Results_list
 
-
 def Osquery_Report():
   return{
     "Listening Ports: ": get_listening_ports(),
     "Processes: ": get_processes(),
     "Users: " :get_users()
   }
+  
   def OpenVAS_Report(IPaddr):
-        pass
+        Results = OpencasScan(IPaddr)
 def Full_Report(IPaddr):
   return {"Nmap" : Nmap_Report(IPaddr),
           "OSquery" : Osquery_Report()
