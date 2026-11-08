@@ -5,7 +5,7 @@ from gvm.connections import UnixSocketConnection
 from gvm.protocols.latest import Gmp
 from gvm.transforms import EtreeCheckCommandTransform
 from gvm.errors import GvmError
-
+from lxml import etree
 Port_List_ID = "730ef368-57e2-11e1-a90f-406186ea4fc5";
 Config_ID = "daba56c8-73ec-11df-a475-002264764cea";
 Scanner_ID = "08b69003-5fc2-4037-a479-93b440211c73";
@@ -35,7 +35,8 @@ def OpenvasScan(IPaddr):
       if  Trying >= 120:
         raise TimeoutError("this Scan has timed out")
       time.sleep(60)
-    return Report 
+    Clean_Report = etree.tostring(report,pretty_print=True).decode())
+    return Clean_Report
 
       
   
