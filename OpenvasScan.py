@@ -1,4 +1,5 @@
 import gvm
+import time
 
 from gvm.connections import UnixSocketConnection
 from gvm.protocols.latest import Gmp
@@ -16,10 +17,20 @@ def OpenvasScan(IPaddr):
 
   with Gmp(connection=connection, transform = EtreeCheckCommandTransform()) as gmp:
     gmp.authenticate("admin","admin");
-    Target = gmp.create_target(name = "ASM target", hosts = [IPaddr], port_list_id = Port_list_ID);
+    Target = gmp.create_target(name = "ASM target", hosts = [IPaddr], port_list_id = Port_List_ID);
     Target_ID = Target.get("id");
     Task = gmp.create_task(name ="ASM Scanner",config_id =Config_ID,target_id = Target_ID,scanner_id =Scanner_ID);
     Task_ID = Task.get("id");
-    Report = gmp.start_task(Task_ID)
+    Run_Report = gmp.start_task(Task_ID)
+    
+    while True:
+      Report  = gmp.get_task(Task_ID)
+      Task_Status = Report.find("task/status").text
+      print(Task_Status)
+      if Task_Status == "Done": 
+        break
+      time.sleep(20)
+    return Report 
 
-  return Report 
+      
+  
