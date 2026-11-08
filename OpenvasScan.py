@@ -27,7 +27,7 @@ def OpenvasScan(IPaddr):
       Report  = gmp.get_task(Task_ID)
       Task_Status = Report.find(".//status").text
       print(Task_Status)
-      if Task_Status == "Done": 
+      if Task_Status == "Done":
         break
       elif Task_Status in ["Stopped", "Interrupted"]:
         raise Exception(f"OpenVAS scan ended with status: {Task_Status}")
@@ -35,8 +35,15 @@ def OpenvasScan(IPaddr):
       if  Trying >= 120:
         raise TimeoutError("this Scan has timed out")
       time.sleep(60)
-    Clean_Report = etree.tostring(report,pretty_print=True).decode()
-    return Clean_Report
+    Report_ID = Report.find(".//last_report/report").get("id")
+    Finish_Report = gmp.get_report(report_id=Report_ID)
+    Clean_Report = etree.tostring(Finish_Report,pretty_print=True).decode()
+    gmp.delete_task(Task_ID)
+    gmp.delete_target(Target_ID)
+    return Finish_Report
 
-      
-  
+
+
+
+
+
