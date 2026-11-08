@@ -10,9 +10,9 @@ def Nmap_Report(IPaddr):
   Results_list = {}
   for host in Results.all_hosts():
     Results_list[host] ={
-    "Host Name": {Results[host].hostname(),
-    "State": {Results[host].state(),
-    "Open TCP Ports": {Results[host].all_tcp()
+    "Host Name": Results[host].hostname(),
+    "State": Results[host].state(),
+    "Open TCP Ports": Results[host].all_tcp()
     }
   return Results_list
 
