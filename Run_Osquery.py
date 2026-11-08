@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def run_osquery(query):
+def Run_Osquery(query):
     result = subprocess.run(
         ["osqueryi", "--json", query],
         capture_output=True,
@@ -12,10 +12,10 @@ def pretty(data):
     return json.dumps(data, indent=4, sort_keys=True)
 def get_listening_ports():
     ports = run_osquery("SELECT pid, port, address FROM listening_ports;")
-    filter = [
+    filtered = [
     p for p in ports
     if p["port"] != "0" and p["address"] != "" and p["pid"] != "-1"]
-    return filter
+    return filtered
 
 def get_processes():
     return run_osquery("SELECT pid, name, path FROM processes;")
