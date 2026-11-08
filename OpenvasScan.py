@@ -35,7 +35,7 @@ def OpenvasScan(IPaddr):
       if  Trying >= 120:
         raise TimeoutError("this Scan has timed out")
       time.sleep(60)
-    Clean_Report = etree.tostring(report,pretty_print=True).decode())
+    Clean_Report = etree.tostring(report,pretty_print=True).decode()
     return Clean_Report
 
       
