@@ -23,9 +23,10 @@ def Osquery_Report():
     "Users: " :get_users()
   }
   
-def OpenVAS_Report(IPaddr):
-    Results = OpenvasScan(IPaddr)
+def OpenVAS_Report():
+    Results = OpenvasScan()
     Findings = []
+  
     for Finding in Results.findall(".//result"):
       Findings.append({
         "Name" : Finding.findtext("name"),
@@ -33,7 +34,7 @@ def OpenVAS_Report(IPaddr):
         "Port" : Finding.findtext("port"),
         "Severity" : Finding.findtext("severity"),
         "Description" : Finding.findtext("description"),
-        "Solution" : Finding.findtext("solution")
+        "Solution" : Finding.findtext(".//solution")
       })
                       
     return {"Scan Finding": Findings}
@@ -43,7 +44,7 @@ def OpenVAS_Report(IPaddr):
 def Full_Report(IPaddr):
   return {"Nmap" : Nmap_Report(IPaddr),
           "OSquery" : Osquery_Report(),
-          "OpenVAS": OpenVAS_Report(IPaddr)
+          "OpenVAS": OpenVAS_Report()
          }
 
 def Write_Report(IPaddr):
