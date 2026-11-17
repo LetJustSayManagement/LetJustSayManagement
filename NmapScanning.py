@@ -8,5 +8,9 @@ import nmap
 
 def NmapScanning(Ipaddr):
   scanner = nmap.PortScanner()
+"""
+    sT -- scans tcp connections
+    T4 -- timing and performance
+"""
   scanner.scan(Ipaddr, '1-65535', arguments='-sT -T4')
   return scanner
