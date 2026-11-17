@@ -20,15 +20,3 @@ the goual of Osquery is used for continuous monitoring. It continuously monitors
 
 ------OpenVAS------
 The goal of openVAS is to scan for known vulnerabilities in identified assets.
-
-
-
-Installation 
-sudo apt update
-
-
------nmaps------
-sudo apt install nmap
-
-------Osquery------
-sudo apt install Osqueryi
